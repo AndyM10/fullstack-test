@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "outDir": "bin",
+    "allowJs": true,
+    "maxNodeModuleJsDepth": 10,
+    "emitDecoratorMetadata": true,
+    "resolvePackageJsonImports": true,
+    "target": "ES2024",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "pretty": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"]
+}
