@@ -1,23 +1,13 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	let articles: any[] = [];
 	let currentPage = 1;
 	const articlesPerPage = 5;
 
-	onMount(async () => {
-		const response = await fetch('/api/articles'); // Adjust the API endpoint as needed
-		articles = await response.json();
-	});
-
-	function paginate(array: any[], page_size: number, page_number: number) {
-		return array.slice((page_number - 1) * page_size, page_number * page_size);
-	}
-
-	$: paginatedArticles = paginate(articles, articlesPerPage, currentPage);
+	let { data } = $props();
+	let { articles } = data;
 </script>
 
 <div>
-	{#each paginatedArticles as article}
+	{#each articles as article}
 		<div class="article">
 			<h2>{article.title}</h2>
 			<p>{article.content}</p>

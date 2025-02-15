@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import Database from "better-sqlite3";
 import type { Article } from "./types.js";
 import { articleBySlugQuery, articlesQuery } from "./queries.js";
+
 const db = new Database("./data.db");
 const app = new Hono();
 
