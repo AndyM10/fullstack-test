@@ -1,5 +1,7 @@
 <script lang="ts">
 	import '../app.css';
+	import { authClient } from '$lib/authClient';
+	import { goto } from '$app/navigation';
 	let { children, data } = $props();
 
 	let { session } = data;
@@ -9,7 +11,18 @@
 	<ul>
 		{#if session}
 			<li><a href="/articles">Articles</a></li>
-			<li><a href="/logout">Logout</a></li>
+			<li>
+				<button
+					onclick={() =>
+						authClient.signOut({
+							fetchOptions: {
+								onSuccess: () => {
+									goto('/');
+								}
+							}
+						})}>Logout</button
+				>
+			</li>
 		{:else}
 			<li><a href="/signup">Sign Up</a></li>
 		{/if}
