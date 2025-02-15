@@ -21,12 +21,16 @@ app.get("/articles", (c) => {
     const rows = db
       .prepare(articlesQuery)
       //Would be nice if the type inference worked better here maybe use an ORM like drizzle but have never used it so did not want waste time learning it.
-      .all(pageSize, offset) as Article[];
+      .all(pageSize, offset) as { article_json: any }[];
 
     if (rows.length === 0) {
       return c.json({ error: "No articles found" }, 404);
     }
-    return c.json(rows); // Send rows as JSON response
+
+    //parse the article_json string into an object
+    const result = rows.map((row) => JSON.parse(row.article_json));
+
+    return c.json(result); // Send rows as JSON response
   } catch (error) {
     return c.text(`Error fetching articles: ${error}`, 500);
   }
