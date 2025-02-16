@@ -2,9 +2,9 @@
 	import '../app.css';
 	import { authClient } from '$lib/authClient';
 	import { goto } from '$app/navigation';
-	import { redirect } from '@sveltejs/kit';
 	let { children, data } = $props();
 
+	//TODO: I need session to be reactive so that the navbar updates when the user logs in or out
 	let { session } = data;
 </script>
 

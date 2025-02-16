@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { authClient } from '$lib/authClient';
 	import { goto } from '$app/navigation';
-	let email = '';
-	let password = '';
-
+	let email: string = $state('');
+	let password: string = $state('');
+	let formError: string = $state('');
 	async function handleSubmit() {
 		const { error } = await authClient.signIn.email({
 			email,
@@ -12,6 +12,7 @@
 
 		if (error) {
 			console.error(error);
+			formError = error.message!;
 		} else {
 			goto('/articles');
 		}
@@ -20,11 +21,12 @@
 
 <div class="flex h-screen items-center justify-center bg-gray-50">
 	<div class="flex w-full flex-col items-center justify-center">
-		<form
-			on:submit|preventDefault={handleSubmit}
-			class="w-full max-w-md rounded-lg bg-white p-8 shadow-md"
-		>
+		<form onsubmit={handleSubmit} class="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
 			<h2 class="mb-6 text-center text-2xl font-bold">Login</h2>
+
+			{#if formError}
+				<p class="mb-4 text-center text-red-500">{formError}</p>
+			{/if}
 
 			<div class="mb-4">
 				<input

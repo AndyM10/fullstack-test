@@ -7,7 +7,13 @@ import { articleBySlugQuery, articlesQuery } from "./queries.js";
 const db = new Database("./data.db");
 const app = new Hono();
 
-app.use("*", cors());
+//Allow cors from the frontend
+app.use(
+  "*",
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 app.get("/", async (c) => {
   return c.text("Hello Telimer!");
@@ -15,6 +21,7 @@ app.get("/", async (c) => {
 
 app.get("/articles", (c) => {
   //Parse the page query param from string to number
+  //If no page is provided, default to 1
   const page = parseInt(c.req.query("page")!) || 1;
   const pageSize = 10;
   //Calculate the offset for the query
@@ -44,6 +51,7 @@ app.get("/article/:slug", (c) => {
     const article = db.prepare(articleBySlugQuery).get(slug) as {
       article_json: any;
     };
+
     if (!article) {
       return c.json({ error: "Article not found" }, 404);
     }

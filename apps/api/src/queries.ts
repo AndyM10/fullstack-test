@@ -1,3 +1,10 @@
+/*
+  This query returns a list of articles.
+  Tried to keep the same shape as the types defined in the types.ts file.
+  Had make a subquery to get the regions as placing another left join was returning duplicate analyst results.
+  I believe this was due to it aggregating the two tables as as article can have multiple regions and analysts.
+  I'm not sure if this is the best way to do this, but it works.
+*/
 const articlesQuery = `
 SELECT 
   json_object(

@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { authClient } from '$lib/authClient';
-	let email = '';
-	let password = '';
-	let name = '';
+	let email: string = $state('');
+	let password: string = $state('');
+	let name: string = $state('');
+	let formError: string = $state('');
+
 	async function handleSubmit() {
 		const { data, error } = await authClient.signUp.email({
 			email: email,
@@ -12,6 +14,7 @@
 		});
 		if (error) {
 			console.error(error);
+			formError = error.message!;
 		}
 		//If successfull redirect to /articles
 		if (data) {
@@ -22,12 +25,11 @@
 
 <div class="flex h-screen items-center justify-center bg-gray-50">
 	<div class="flex w-full flex-col items-center justify-center">
-		<form
-			on:submit|preventDefault={handleSubmit}
-			class="w-full max-w-md rounded-lg bg-white p-8 shadow-md"
-		>
+		<form onsubmit={handleSubmit} class="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
 			<h2 class="mb-6 text-center text-2xl font-bold">Sign Up</h2>
-
+			{#if formError}
+				<p class="mb-4 text-center text-red-500">{formError}</p>
+			{/if}
 			<div class="mb-4">
 				<input
 					type="email"

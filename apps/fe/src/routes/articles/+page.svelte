@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
-	let currentPage = $state(1);
 
 	let { data } = $props();
-	let { articles } = $state(data);
+	let { articles, page } = $state(data);
+	let currentPage = $state(page);
 
 	const paginate = async (page: number) => {
 		currentPage = page;
