@@ -18,82 +18,41 @@
 	}
 </script>
 
-<div class="container">
-	<form on:submit|preventDefault={handleSubmit} class="login-form">
-		<h1>Login</h1>
+<div class="flex h-screen items-center justify-center">
+	<form
+		on:submit|preventDefault={handleSubmit}
+		class="w-full max-w-md rounded-lg bg-white p-8 shadow-md"
+	>
+		<h1 class="mb-8 text-center">Login</h1>
 
-		<div class="form-group">
-			<label for="email">Email</label>
-			<input type="email" id="email" bind:value={email} required placeholder="Enter your email" />
+		<div class="mb-4">
+			<label for="email" class="mb-2 block">Email</label>
+			<input
+				type="email"
+				id="email"
+				bind:value={email}
+				required
+				placeholder="Enter your email"
+				class="w-full rounded-md border border-gray-300 p-2 text-base"
+			/>
 		</div>
 
-		<div class="form-group">
-			<label for="password">Password</label>
+		<div class="mb-4">
+			<label for="password" class="mb-2 block">Password</label>
 			<input
 				type="password"
 				id="password"
 				bind:value={password}
 				required
 				placeholder="Enter your password"
+				class="w-full rounded-md border border-gray-300 p-2 text-base"
 			/>
 		</div>
 
-		<button type="submit">Log in</button>
+		<button
+			type="submit"
+			class="mt-4 w-full cursor-pointer rounded-md border-none bg-green-500 py-3 text-base text-white hover:bg-green-600"
+			>Log in</button
+		>
 	</form>
 </div>
-
-<style>
-	.container {
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.login-form {
-		background: white;
-		padding: 2rem;
-		border-radius: 8px;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-		width: 100%;
-		max-width: 400px;
-	}
-
-	h1 {
-		text-align: center;
-		margin-bottom: 2rem;
-	}
-
-	.form-group {
-		margin-bottom: 1rem;
-	}
-
-	label {
-		display: block;
-		margin-bottom: 0.5rem;
-	}
-
-	input {
-		width: 100%;
-		padding: 0.5rem;
-		border: 1px solid #ddd;
-		border-radius: 4px;
-		font-size: 1rem;
-	}
-
-	button {
-		width: 100%;
-		padding: 0.75rem;
-		background-color: #4caf50;
-		color: white;
-		border: none;
-		border-radius: 4px;
-		font-size: 1rem;
-		cursor: pointer;
-		margin-top: 1rem;
-	}
-
-	button:hover {
-		background-color: #45a049;
-	}
-</style>

@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { authClient } from '$lib/authClient';
 	import { goto } from '$app/navigation';
+	import { redirect } from '@sveltejs/kit';
 	let { children, data } = $props();
 
 	let { session } = data;
