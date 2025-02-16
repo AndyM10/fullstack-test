@@ -1,11 +1,13 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import Database from "better-sqlite3";
-import type { Article } from "./types.js";
+import { cors } from "hono/cors";
 import { articleBySlugQuery, articlesQuery } from "./queries.js";
 
 const db = new Database("./data.db");
 const app = new Hono();
+
+app.use("*", cors());
 
 app.get("/", async (c) => {
   return c.text("Hello Telimer!");
@@ -36,14 +38,18 @@ app.get("/articles", (c) => {
   }
 });
 
-app.get("/articles/:slug", (c) => {
+app.get("/article/:slug", (c) => {
   const { slug } = c.req.param();
   try {
-    const article = db.prepare(articleBySlugQuery).get(slug) as Article;
+    const article = db.prepare(articleBySlugQuery).get(slug) as {
+      article_json: any;
+    };
     if (!article) {
       return c.json({ error: "Article not found" }, 404);
     }
-    return c.json(article);
+    //parse the article_json string into an object
+    const result = JSON.parse(article.article_json);
+    return c.json(result);
   } catch (error) {
     return c.text(`Error fetching article: ${error}`, 500);
   }

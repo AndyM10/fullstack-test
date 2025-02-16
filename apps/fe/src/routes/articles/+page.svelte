@@ -1,15 +1,31 @@
 <script lang="ts">
-	let currentPage = 1;
-	const articlesPerPage = 5;
+	import { PUBLIC_API_URL } from '$env/static/public';
+	let currentPage = $state(1);
 
 	let { data } = $props();
-	let { articles } = data;
+	let { articles } = $state(data);
+
+	const paginate = async (page: number) => {
+		currentPage = page;
+		const response = await fetch(`${PUBLIC_API_URL}/articles?page=${page}`);
+		const data = await response.json();
+		articles = data;
+	};
 </script>
 
 <div>
-	<div class="flex flex-col gap-4">
+	<div class="flex flex-row items-center justify-center gap-4 pt-4">
+		<button class="rounded-md bg-gray-200 px-4 py-2" onclick={() => paginate(currentPage - 1)}
+			>Previous</button
+		>
+		<span>Page {currentPage}</span>
+		<button class="rounded-md bg-gray-200 px-4 py-2" onclick={() => paginate(currentPage + 1)}
+			>Next</button
+		>
+	</div>
+	<div class="flex flex-col gap-4 p-4">
 		{#each articles as article}
-			<a href={`/articles/${article.slug}`}>
+			<a href={`/article/${article.slug}`}>
 				<article
 					class="group bg-card text-card-foreground flex flex-col overflow-hidden rounded-lg border shadow-sm transition-shadow hover:shadow-md sm:flex-row"
 				>
@@ -53,15 +69,5 @@
 				</article>
 			</a>
 		{/each}
-	</div>
-
-	<div class="pagination">
-		<button on:click={() => (currentPage = Math.max(currentPage - 1, 1))}>Previous</button>
-		<span>Page {currentPage}</span>
-		<button
-			on:click={() =>
-				(currentPage = Math.min(currentPage + 1, Math.ceil(articles.length / articlesPerPage)))}
-			>Next</button
-		>
 	</div>
 </div>
