@@ -6,6 +6,18 @@ SELECT
     'summary', a.summary,
     'content', a.content,
     'published_at', a.published_at,
+    'regions', (
+      SELECT json_group_array(
+        json_object(
+          'id', r.id,
+          'slug', r.slug,
+          'name', r.name
+        )
+      )
+      FROM article_regions ar
+      LEFT JOIN regions r ON ar.region_id = r.id
+      WHERE ar.article_slug = a.slug
+    ),
     'content_type', json_object(
       'id', ct.id,
       'name', ct.name,
@@ -42,6 +54,18 @@ SELECT
     'summary', a.summary,
     'content', a.content,
     'published_at', a.published_at,
+    'regions', (
+      SELECT json_group_array(
+        json_object(
+          'id', r.id,
+          'slug', r.slug,
+          'name', r.name
+        )
+      )
+      FROM article_regions ar
+      LEFT JOIN regions r ON ar.region_id = r.id
+      WHERE ar.article_slug = a.slug
+    ),
     'content_type', json_object(
       'id', ct.id,
       'name', ct.name,

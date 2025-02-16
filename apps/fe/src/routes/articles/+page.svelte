@@ -48,8 +48,16 @@
 								</span>
 								<time class="text-muted-foreground text-sm">{article.published_at}</time>
 							</div>
+							<div class="mb-4 flex items-center gap-2">
+								{#each article.regions as region}
+									<span
+										class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-nowrap text-gray-800"
+									>
+										{region.name}
+									</span>
+								{/each}
+							</div>
 							<h2 class="mb-2 text-2xl font-semibold tracking-tight">{article.title}</h2>
-							<p class="text-muted-foreground mb-4">{article.summary}</p>
 						</div>
 						<div class="flex items-center gap-2">
 							{#each article.analysts as analyst}

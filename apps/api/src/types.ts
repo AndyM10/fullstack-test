@@ -3,9 +3,16 @@ export type Article = {
   title: string;
   summary: string;
   content: string;
+  regions: Region[];
   content_type: ContentType;
   published_at: string;
   analysts: Analyst[];
+};
+
+export type Region = {
+  id: number;
+  slug: string;
+  name: string;
 };
 
 export type Analyst = {

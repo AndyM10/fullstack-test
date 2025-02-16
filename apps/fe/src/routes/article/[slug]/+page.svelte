@@ -41,6 +41,7 @@
 			{@html article.content}
 		</div>
 	{:else}
+		<p class="text-muted-foreground mb-4">{article.summary}</p>
 		<div class="h-[100vh] w-full rounded bg-gray-300 opacity-50">
 			<div class="flex h-full flex-col items-center justify-center">
 				<button
