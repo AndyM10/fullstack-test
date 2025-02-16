@@ -31,7 +31,7 @@
 				>
 					<div class="relative aspect-[16/9] sm:w-[300px]">
 						<img
-							src={article.image}
+							src={`https://cdn.tellimer.com/users/${article.image}`}
 							alt={article.title}
 							class="object-cover transition-transform duration-300 group-hover:scale-105"
 						/>
@@ -51,13 +51,15 @@
 						</div>
 						<div class="flex items-center gap-2">
 							{#each article.analysts as analyst}
-								<div class="flex items-center">
-									<img
-										src={analyst.picture}
-										alt={`${analyst.first_name} ${analyst.last_name}`}
-										class="h-8 w-8 rounded-full object-cover"
-										title={`${analyst.first_name} ${analyst.last_name}`}
-									/>
+								<div class="flex items-center gap-2">
+									{#if analyst.picture !== null}
+										<img
+											src={`https://cdn.tellimer.com/users/${analyst.picture}`}
+											alt={`${analyst.first_name} ${analyst.last_name}`}
+											class="h-8 w-8 rounded-full object-cover"
+											title={`${analyst.first_name} ${analyst.last_name}`}
+										/>
+									{/if}
 									<p class="text-sm font-medium text-gray-700">
 										{analyst.first_name}
 										{analyst.last_name}

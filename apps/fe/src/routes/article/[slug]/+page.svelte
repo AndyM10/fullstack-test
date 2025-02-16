@@ -20,11 +20,13 @@
 		<div class="flex items-center gap-4">
 			{#each data.article.analysts as analyst}
 				<div class="flex items-center gap-2">
-					<img
-						src={analyst.picture}
-						alt={`${analyst.first_name} ${analyst.last_name}`}
-						class="h-8 w-8 rounded-full object-cover"
-					/>
+					{#if analyst.picture !== null}
+						<img
+							src={`https://cdn.tellimer.com/users/${analyst.picture}`}
+							alt={`${analyst.first_name} ${analyst.last_name}`}
+							class="h-8 w-8 rounded-full object-cover"
+						/>
+					{/if}
 					<p class="text-sm font-medium text-gray-700">
 						{analyst.first_name}
 						{analyst.last_name}
