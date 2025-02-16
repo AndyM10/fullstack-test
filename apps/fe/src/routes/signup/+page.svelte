@@ -20,66 +20,55 @@
 	}
 </script>
 
-<div class="container">
-	<form class="form" on:submit|preventDefault={handleSubmit}>
-		<h2>Sign Up</h2>
-		<div class="input-group">
-			<input type="email" placeholder="Email" bind:value={email} required />
-		</div>
-		<div class="input-group">
-			<input type="password" placeholder="Password" bind:value={password} required />
-		</div>
-		<div class="input-group">
-			<input type="text" placeholder="Name" bind:value={name} required />
-		</div>
-		<button type="submit">Login</button>
-	</form>
+<div class="flex h-screen items-center justify-center bg-gray-50">
+	<div class="flex w-full flex-col items-center justify-center">
+		<form
+			on:submit|preventDefault={handleSubmit}
+			class="w-full max-w-md rounded-lg bg-white p-8 shadow-md"
+		>
+			<h2 class="mb-6 text-center text-2xl font-bold">Sign Up</h2>
+
+			<div class="mb-4">
+				<input
+					type="email"
+					placeholder="Email"
+					bind:value={email}
+					required
+					class="w-full rounded-md border border-gray-300 p-2 text-base focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+				/>
+			</div>
+
+			<div class="mb-4">
+				<input
+					type="password"
+					placeholder="Password"
+					bind:value={password}
+					required
+					class="w-full rounded-md border border-gray-300 p-2 text-base focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+				/>
+			</div>
+
+			<div class="mb-6">
+				<input
+					type="text"
+					placeholder="Name"
+					bind:value={name}
+					required
+					class="w-full rounded-md border border-gray-300 p-2 text-base focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+				/>
+			</div>
+
+			<button
+				type="submit"
+				class="w-full rounded-md bg-blue-600 px-4 py-2 text-white transition duration-300 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+			>
+				Sign Up
+			</button>
+		</form>
+
+		<p class="mt-4 text-center text-sm text-gray-600">
+			Already have an account?
+			<a href="/login" class="font-medium text-blue-600 hover:text-blue-500">Login</a>
+		</p>
+	</div>
 </div>
-
-<style>
-	.container {
-		display: flex; /* Use flexbox for centering */
-		justify-content: center; /* Center horizontally */
-		align-items: center; /* Center vertically */
-		height: 100vh; /* Full viewport height */
-		background-color: #f8f9fa; /* Light background color */
-	}
-
-	.form {
-		background: white; /* White background for the form */
-		padding: 20px; /* Padding inside the form */
-		border-radius: 8px; /* Rounded corners */
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-		width: 300px; /* Fixed width for the form */
-	}
-
-	h2 {
-		text-align: center; /* Center the heading */
-	}
-
-	.input-group {
-		margin-bottom: 15px; /* Space between input fields */
-	}
-
-	input {
-		width: 100%; /* Full width input */
-		padding: 10px; /* Padding inside input */
-		border: 1px solid #ccc; /* Border color */
-		border-radius: 4px; /* Rounded corners */
-	}
-
-	button {
-		width: 100%; /* Full width button */
-		padding: 10px; /* Padding inside button */
-		background-color: #007bff; /* Button color */
-		color: white; /* Text color */
-		border: none; /* No border */
-		border-radius: 4px; /* Rounded corners */
-		cursor: pointer; /* Pointer cursor on hover */
-		transition: background-color 0.3s; /* Smooth background transition */
-	}
-
-	button:hover {
-		background-color: #0056b3; /* Darker button color on hover */
-	}
-</style>

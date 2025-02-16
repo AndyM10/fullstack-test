@@ -15,12 +15,14 @@
 
 <div>
 	<div class="flex flex-row items-center justify-center gap-4 pt-4">
-		<button class="rounded-md bg-gray-200 px-4 py-2" onclick={() => paginate(currentPage - 1)}
-			>Previous</button
+		<button
+			class="rounded-md bg-gray-200 px-4 py-2 hover:bg-gray-300"
+			onclick={() => paginate(currentPage - 1)}>Previous</button
 		>
 		<span>Page {currentPage}</span>
-		<button class="rounded-md bg-gray-200 px-4 py-2" onclick={() => paginate(currentPage + 1)}
-			>Next</button
+		<button
+			class="rounded-md bg-gray-200 px-4 py-2 hover:bg-gray-300"
+			onclick={() => paginate(currentPage + 1)}>Next</button
 		>
 	</div>
 	<div class="flex flex-col gap-4 p-4">

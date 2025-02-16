@@ -9,11 +9,13 @@
 </script>
 
 <nav>
-	<ul>
+	<ul class="flex flex-row items-center justify-between">
+		<li><a href="/articles">Articles</a></li>
 		{#if session}
-			<li><a href="/articles">Articles</a></li>
-			<li>
+			<li class="flex flex-row items-center gap-2">
+				<span>Welcome, {session.user.name}</span>
 				<button
+					class="rounded-md bg-gray-200 px-4 py-2 hover:bg-gray-300"
 					onclick={() =>
 						authClient.signOut({
 							fetchOptions: {
@@ -25,7 +27,7 @@
 				>
 			</li>
 		{:else}
-			<li><a href="/signup">Sign Up</a></li>
+			<li><a href="/login">Login</a></li>
 		{/if}
 	</ul>
 </nav>
